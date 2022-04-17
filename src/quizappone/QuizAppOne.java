@@ -13,33 +13,10 @@ public class QuizAppOne {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         // TODO code application logic here
-        Connection myConn = null;
-        Statement myStmt = null;
-        ResultSet myRus = null;
-        String url = "jdbc:mysql://localhost:3306/quizapp";
-        
-        try {
-            myConn = DriverManager.getConnection(url, "root" , "");
-            myStmt = myConn.createStatement();
-            myRus = myStmt.executeQuery("Select * from questions");
-            
-            while (myRus.next()){
-                System.out.println(myRus.getString("question"));
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            if (myRus != null){
-            
-                myRus.close();
-            }
-            if (myStmt != null){
-            
-                myStmt.close();
-            }
-        }
+        QuestionDBImp obj1 = new QuestionDBImp();
+        obj1.createQuestionsTable();
     }
     
 }
