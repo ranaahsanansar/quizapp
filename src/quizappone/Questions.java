@@ -13,8 +13,8 @@ import java.util.List;
 public interface Questions {
     void createQuestionTable();
     void insertQuestion();
-    Mcqs selectById(int id);
-    List<Mcqs> selectAll();
+//    Mcqs selectById(int id);
+//    List<Mcqs> selectAll();
     void delete(int id);
     void update(Mcqs Q , int id);
 }

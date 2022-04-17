@@ -15,13 +15,13 @@ public class Mcqs {
     private String opt2;
     private String opt3;
     private String opt4;
-    private String correct;
+    private int correct;
     
     public Mcqs(){
         
     }
     
-    public Mcqs(int id , String Question , String opt1, String opt2 , String opt3, String opt4, String correct){
+    public Mcqs(int id , String Question , String opt1, String opt2 , String opt3, String opt4, int correct){
     this.id = id ;
     this.Question_s = Question;
     this.opt1 = opt1;
@@ -76,12 +76,13 @@ public class Mcqs {
         this.opt4 = opt4;
     }
 //    --------------------------------------------
-    public String getCorrect(){
+    public int getCorrect(){
         return this.correct;
     }
-    public void setCorrect(String corr){
+    public void setCorrect(int corr){
         this.correct = corr;
     }
+
     
     
 }
