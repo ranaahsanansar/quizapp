@@ -16,7 +16,6 @@ public class QuizAppOne {
     public static void main(String[] args) {
         // TODO code application logic here
         QuestionDBImp obj1 = new QuestionDBImp();
-        obj1.createQuestionsTable();
     }
     
 }

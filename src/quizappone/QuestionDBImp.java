@@ -26,4 +26,35 @@ public class QuestionDBImp  {
         }
         
     }
+    
+//    Insert New Question in Database 
+    
+    public void insertQuestion(Mcqs question) throws SQLException{
+        Connection connection = null;
+        PreparedStatement prepareStatement = null;
+//        ------------------------
+//        INSERT INTO `questions` (`id`, `question`, `opt1`, `opt2`, `opt3`, `opt4`, `correct`) VALUES ('question.getId()', 'question.getQuestion()', 'question.getOpt1()', 'question.getOpt2()', 'question.getOpt3()', 'question.getOpt4()', 'question.getCorrect()');
+
+//        System.out.println(querry);
+           
+            
+            try{
+        connection = CreatConnection.getConnection();
+         prepareStatement = connection.prepareStatement("INSERT INTO `questions` (`id`, `question`, `opt1`, `opt2`, `opt3`, `opt4`, `correct`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            prepareStatement.setString(1, question.getOpt1());
+            prepareStatement.setString(2, question.getQuestion());
+            prepareStatement.setString(3, question.getOpt1());
+            prepareStatement.setString(4, question.getOpt2());
+            prepareStatement.setString(5, question.getOpt3());
+            prepareStatement.setString(6, question.getOpt4());
+            prepareStatement.setString(7, question.getCorrect());
+            prepareStatement.executeUpdate();
+                System.out.println("Inserted");
+            
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        
+    }
+    
 }
