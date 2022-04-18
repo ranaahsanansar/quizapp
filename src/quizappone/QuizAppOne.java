@@ -17,8 +17,8 @@ public class QuizAppOne {
         // TODO code application logic here
         Teacher T = new Teacher("Captain" , 22);
 //        T.insert();
-        T.update(1);
-        System.out.println("Mcq UpdatedMian");
+//        T.update(1);
+//        System.out.println("Mcq UpdatedMian");
     }
     
 }
