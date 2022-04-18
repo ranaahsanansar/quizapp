@@ -117,7 +117,7 @@ public class QuizAppOne {
                     int roll_number;
                     System.out.println("Student Mode\n\n");
                     System.out.print("Enter Name: ");
-                    name = input.nextLine();
+                    name = input.next();
                     System.out.print("Enter Age: ");
                     age = input.nextInt();
                     System.out.print("Enter Roll Number: ");

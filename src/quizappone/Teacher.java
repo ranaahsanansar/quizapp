@@ -15,12 +15,14 @@ import static quizappone.QuizAppOne.input;
  * @author Rana Ahsan Ansar
  */
 public class Teacher extends Person {
+
     int teacherId;
-    public Teacher(String name, int age , int teacherId) {
+
+    public Teacher(String name, int age, int teacherId) {
         super(name, age);
         mode = true;
         this.teacherId = teacherId;
-        
+
     }
 
     public void insert() throws SQLException {
@@ -29,7 +31,7 @@ public class Teacher extends Person {
 //          Crate Variables 
             String questionInsert, opt1, opt2, opt3, opt4;
             int correctAnswer;
-            for (int i = 0; i <= 10; i++) {
+            for (int i = 1; i <= 10; i++) {
                 System.out.print("Enter Question: ");
                 questionInsert = input.next();
                 System.out.print("Enter option 1: ");
@@ -59,7 +61,7 @@ public class Teacher extends Person {
 
     public void delete(int id) {
         if (mode == true) {
-            System.out.println("Delete Question of Id = " + id);
+            System.out.println("Deleting Question of Id = " + id);
             if (id <= 10 && id > 0) {
                 QuestionDBImp database = new QuestionDBImp();
                 database.delete(id);
@@ -72,7 +74,22 @@ public class Teacher extends Person {
 
     public void update(int id) {
         if (mode == true) {
-            Mcqs question = new Mcqs(id, "What is Your Name", "AhsanCaptain", "Ahmed", "Ali", "Umar", 1);
+            String question_s, opt1, opt2, opt3, opt4;
+            int correct_ans;
+            System.out.print("Enter new Question:");
+            question_s = input.next();
+            System.out.println("Enter Options\n1: ");
+            opt1 = input.next();
+            System.out.println("2: ");
+            opt2 = input.next();
+            System.out.println("3: ");
+            opt3 = input.next();
+            System.out.println("4: ");
+            opt4 = input.next();
+            System.out.println("Enter new Correct Option Number(Integer):");
+            correct_ans = input.nextInt();
+
+            Mcqs question = new Mcqs(id, question_s, opt1, opt2, opt3, opt4, correct_ans);
             QuestionDBImp database = new QuestionDBImp();
 
             database.update(question, id);
@@ -86,12 +103,11 @@ public class Teacher extends Person {
         QuestionDBImp database = new QuestionDBImp();
         database.deleteAll();
     }
-    
-    public void showAllQuestion(){
+
+    public void showAllQuestion() {
         QuestionDBImp database = new QuestionDBImp();
         database.showAll();
-        
+
     }
-    
 
 }

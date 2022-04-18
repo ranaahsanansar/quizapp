@@ -44,7 +44,7 @@ public abstract class Person {
             connection = CreatConnection.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM `student`");
-
+            
             while (resultSet.next()) {
                 System.out.println("Name: " + resultSet.getString("name"));
                 System.out.println("Roll Number: " + resultSet.getInt("roll_number"));

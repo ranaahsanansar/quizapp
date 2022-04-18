@@ -10,7 +10,7 @@ import java.sql.*;
  *
  * @author Rana Ahsan Ansar
  */
-public class QuestionDBImp {
+public class QuestionDBImp implements Questions {
 //    Create Table if not available in DataBase ------------
 
     public void createQuestionsTable() {
@@ -63,7 +63,7 @@ public class QuestionDBImp {
         try {
 
             connection = CreatConnection.getConnection();
-            preparedStatement = connection.prepareStatement("​DELETE FROM `questions` WHERE `questions`.`id` = ?");
+            preparedStatement = connection.prepareStatement("DELETE FROM `questions` WHERE `questions`.`id` = ?;");
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             System.out.println("Question Deleted!");

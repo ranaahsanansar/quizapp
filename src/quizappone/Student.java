@@ -95,8 +95,8 @@ public class Student extends Person {
 
             System.out.println("Quiz Starts Now");
             System.out.println("Enter 0 to Next\n\n");
-
-            for (Mcqs Q : mcqArray) {
+            if (mcqArray.size() > 0) {
+                for (Mcqs Q : mcqArray) {
                 total++;
                 System.out.println("Question No." + Q.getId() + ". " + Q.getQuestion() + "\n");
 
@@ -128,6 +128,10 @@ public class Student extends Person {
             percentage = (score / total) * 100;
             percentageInt = (int) percentage;
             insertStudent();
+            }else {
+                System.out.println("There is No Question in Quiz");
+            }
+            
 
         }
         
