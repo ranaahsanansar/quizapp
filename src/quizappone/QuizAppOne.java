@@ -23,7 +23,7 @@ public class QuizAppOne {
 //        T.insert();
 //        T.update(1);
 //        System.out.println("Mcq UpdatedMian");
-        Student student = new Student("Ahsan" , 22 , 99);
+        Student student = new Student("Captain" , 20 , 999);
         student.attempt_Q();
 
     }

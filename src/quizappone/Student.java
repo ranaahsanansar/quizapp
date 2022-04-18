@@ -17,7 +17,8 @@ public class Student extends Person {
 
     int roll_number;
     int total;
-    int percentage;
+    double percentage;
+    int percentageInt;
     List<Mcqs> mcqArray = new ArrayList<>();
     private int score;
 
@@ -26,6 +27,7 @@ public class Student extends Person {
         score = 0;
         total = 0;
         percentage = 0;
+        percentageInt = 0;
         mode = false;
         this.roll_number = roll_number;
 
@@ -64,7 +66,24 @@ public class Student extends Person {
 
     private void insertStudent() {
         Connection connection = null;
+        PreparedStatement preparedStatement = null;
         
+        try {
+            connection = CreatConnection.getConnection();
+            preparedStatement = connection.prepareStatement("INSERT INTO `student` (`id`, `roll_number`, `name`, `total`, `obt_marks`, `persentage`) VALUES (NULL, ?, ?, ?, ?, ?)");
+            
+            preparedStatement.setInt(1, roll_number);
+            preparedStatement.setString(2, name);
+            preparedStatement.setInt(3, total);
+            preparedStatement.setInt(4, score);
+            preparedStatement.setInt(5, percentageInt);
+            if (preparedStatement.execute()) {
+                System.out.println("Added Done");
+            }
+            
+        }catch (Exception e){
+            System.out.println("Error" + e );
+        }
     }
 
     public void attempt_Q() {
@@ -106,6 +125,8 @@ public class Student extends Person {
 
         System.out.println("Total " + total);
         System.out.println("Your current Score: " + score);
+        percentage = (score / total) * 100;
+        percentageInt = (int)percentage;
         insertStudent();
 
     }
