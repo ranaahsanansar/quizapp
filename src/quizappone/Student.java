@@ -65,13 +65,14 @@ public class Student extends Person {
     }
 
     private void insertStudent() {
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        
+
         try {
             connection = CreatConnection.getConnection();
             preparedStatement = connection.prepareStatement("INSERT INTO `student` (`id`, `roll_number`, `name`, `total`, `obt_marks`, `persentage`) VALUES (NULL, ?, ?, ?, ?, ?)");
-            
+
             preparedStatement.setInt(1, roll_number);
             preparedStatement.setString(2, name);
             preparedStatement.setInt(3, total);
@@ -80,55 +81,58 @@ public class Student extends Person {
             if (preparedStatement.execute()) {
                 System.out.println("Added Done");
             }
-            
-        }catch (Exception e){
-            System.out.println("Error" + e );
+
+        } catch (Exception e) {
+            System.out.println("Error" + e);
         }
     }
 
     public void attempt_Q() {
 //        Put Clear Screen Syntax Here Later
+        if (mode == false) {
+            int answer = 0;
 
-        int answer = 0;
+            Scanner input = new Scanner(System.in);
 
-        Scanner input = new Scanner(System.in);
+            System.out.println("Quiz Starts Now");
+            System.out.println("Enter 0 to Next\n\n");
 
-        System.out.println("Quiz Starts Now");
-        System.out.println("Enter 0 to Next\n\n");
+            for (Mcqs Q : mcqArray) {
+                total++;
+                System.out.println("Question No." + Q.getId() + ". " + Q.getQuestion() + "\n");
 
-        for (Mcqs Q : mcqArray) {
-            total++;
-            System.out.println("Question No." + Q.getId() + ". " + Q.getQuestion() + "\n");
+                System.out.println("1. " + Q.getOpt1());
+                System.out.println("2. " + Q.getOpt2());
+                System.out.println("3. " + Q.getOpt3());
+                System.out.println("4. " + Q.getOpt4());
+                System.out.print("Enter your answer by 1, 2, 3, 4 according to Options given: ");
 
-            System.out.println("1. " + Q.getOpt1());
-            System.out.println("2. " + Q.getOpt2());
-            System.out.println("3. " + Q.getOpt3());
-            System.out.println("4. " + Q.getOpt4());
-            System.out.print("Enter your answer by 1, 2, 3, 4 according to Options given: ");
+                try {
+                    answer = input.nextInt();
+                    if (answer == Q.getCorrect()) {
+                        score++;
+                    } else if (answer < 5 && answer > 0) {
+                        System.out.println("Your answer is Saved");
+                    } else if (answer > 4 || answer == 0) {
+                        System.out.println("Going to Next Question...");
+                    }
 
-            try {
-                answer = input.nextInt();
-                if (answer == Q.getCorrect()) {
-                    score++;
-                } else if (answer < 5 && answer > 0) {
-                    System.out.println("Your answer is Saved");
-                } else if (answer > 4 || answer == 0) {
-                    System.out.println("Going to Next Question...");
+                } catch (Exception e) {
+                    System.out.println("Error: " + e);
                 }
 
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
+//            -------------------------------------------------------------------
             }
 
-//            -------------------------------------------------------------------
+            System.out.println("Total " + total);
+            System.out.println("Your current Score: " + score);
+            percentage = (score / total) * 100;
+            percentageInt = (int) percentage;
+            insertStudent();
+
         }
-
-        System.out.println("Total " + total);
-        System.out.println("Your current Score: " + score);
-        percentage = (score / total) * 100;
-        percentageInt = (int)percentage;
-        insertStudent();
-
+        
     }
+    
 
 }

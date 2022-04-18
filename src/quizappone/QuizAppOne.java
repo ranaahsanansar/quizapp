@@ -24,7 +24,9 @@ public class QuizAppOne {
 //        T.update(1);
 //        System.out.println("Mcq UpdatedMian");
         Student student = new Student("Captain" , 20 , 999);
-        student.attempt_Q();
+//        student.attempt_Q();
+//        student.showListOfStudents();
+          T.showListOfStudents();
 
     }
     
