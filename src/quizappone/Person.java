@@ -33,7 +33,7 @@ public abstract class Person {
         
     }
 
-    public void showListOfStudents() {
+    protected void showListOfStudents() {
 //        List<Student> students = new ArrayList();
 
         Connection connection = null;

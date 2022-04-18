@@ -7,7 +7,8 @@ package quizappone;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import static quizappone.QuizAppOne.input;
+//import java.util.Scanner;
 
 /**
  *
@@ -91,8 +92,6 @@ public class Student extends Person {
 //        Put Clear Screen Syntax Here Later
         if (mode == false) {
             int answer = 0;
-
-            Scanner input = new Scanner(System.in);
 
             System.out.println("Quiz Starts Now");
             System.out.println("Enter 0 to Next\n\n");

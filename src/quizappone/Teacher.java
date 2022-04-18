@@ -15,10 +15,12 @@ import static quizappone.QuizAppOne.input;
  * @author Rana Ahsan Ansar
  */
 public class Teacher extends Person {
-
-    public Teacher(String name, int age) {
+    int teacherId;
+    public Teacher(String name, int age , int teacherId) {
         super(name, age);
         mode = true;
+        this.teacherId = teacherId;
+        
     }
 
     public void insert() throws SQLException {
@@ -81,17 +83,15 @@ public class Teacher extends Person {
     }
 
     public void emptyQuiz() {
-        Connection connection = null;
-        Statement statement = null;
-
-        try {
-            connection = CreatConnection.getConnection();
-            statement = connection.createStatement();
-            statement.execute("​TRUNCATE TABLE `quizapp`.`questions`");
-            System.out.println("Old Quiz Cleared");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        QuestionDBImp database = new QuestionDBImp();
+        database.deleteAll();
     }
+    
+    public void showAllQuestion(){
+        QuestionDBImp database = new QuestionDBImp();
+        database.showAll();
+        
+    }
+    
 
 }

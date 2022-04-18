@@ -135,7 +135,7 @@ public class QuestionDBImp {
         try {
             connection = CreatConnection.getConnection();
             statement = connection.createStatement();
-            statement.execute("​TRUNCATE TABLE `quizapp`.`questions`");
+            statement.execute("DELETE FROM questions");
             System.out.println("Old Quiz Cleared");
         } catch (Exception e) {
             e.printStackTrace();

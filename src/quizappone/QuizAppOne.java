@@ -17,7 +17,7 @@ public class QuizAppOne {
     /**
      * @param args the command line arguments
      */
-    static Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in).useDelimiter("\n");
 
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
@@ -40,6 +40,8 @@ public class QuizAppOne {
             System.out.println("\n\nSelect Mode");
             System.out.println("1. Teacher");
             System.out.println("2. Student");
+            System.out.println("3. Show Teacher in Sorted Form");
+            System.out.println("4. Show Student in Sorted Form");
             try {
                 caseNo = input.nextInt();
             } catch (Exception e) {
@@ -50,50 +52,100 @@ public class QuizAppOne {
             switch (caseNo) {
                 case 1 -> {
                     boolean flag2 = true;
+                    int teacherId;
                     System.out.println("Teacher Mode");
-                    System.out.println("Enter Name: ");
+                    System.out.print("Enter Name: ");
                     name = input.next();
-                    System.out.println("Enter Age: ");
+                    System.out.print("Enter Age: ");
                     age = input.nextInt();
-                    Teacher teacher = new Teacher(name, age);
-                    
+                    System.out.print("Enter Teacher ID: ");
+                    teacherId = input.nextInt();
+                    Teacher teacher = new Teacher(name, age , teacherId);
+
                     while (flag2) {
                         System.out.println("\n1. Create Quiz");
-                    System.out.println("2. Show List of Students");
-                    System.out.println("3. Update Question");
-                    System.out.println("4.Delete Question");
-                    System.out.println("5. Show List of Question");
-                    System.out.println("6. Exit");
-                    caseNo = input.nextInt();
-                    switch (caseNo) {
-                        case 1 -> {
-                            teacher.emptyQuiz();
-                            System.out.println("Only Ten Questions are allowed");
-                            teacher.insert();
-                            break;
-                        }
-                        case 2 -> {
-                            teacher.showListOfStudents();
-                            break;
-                        }
-                        case 3 -> {
-                            int id;
-                            System.out.print("Enter Question No: ");
-                            id = input.nextInt();
-                            teacher.update(id);
-                            break;
-                        }
-                        default -> {
+                        System.out.println("2. Show List of Students");
+                        System.out.println("3. Update Question");
+                        System.out.println("4.Delete Question");
+                        System.out.println("5. Show List of Question");
+                        System.out.println("6. Exit");
+                        caseNo = input.nextInt();
+                        switch (caseNo) {
+                            case 1 -> {
+                                teacher.emptyQuiz();
+                                System.out.println("Only Ten Questions are allowed");
+                                teacher.insert();
+                                break;
+                            }
+                            case 2 -> {
+                                teacher.showListOfStudents();
+                                break;
+                            }
+                            case 3 -> {
+                                int id;
+                                System.out.print("Enter Question No: ");
+                                id = input.nextInt();
+                                teacher.update(id);
+                                break;
+                            }
+                            case 4 -> {
+                                int id;
+                                System.out.println("Enter Question No");
+                                id = input.nextInt();
+                                teacher.delete(id);
+                                break;
+                            }
+                            case 5 -> {
+                                System.out.println("----------------------------------");
+                                teacher.showAllQuestion();
+                                break;
+                            }
+                            default -> {
+                                System.out.print("Invalid!");
+                                flag2 = false;
+                                break;
+                            }
 
                         }
+                    }
 
-                    }
-                    }
-                    
                     break;
                 }
                 case 2 -> {
-                    System.out.println("Teacher Mode");
+
+                    boolean flag2 = true;
+                    int roll_number;
+                    System.out.println("Student Mode\n\n");
+                    System.out.print("Enter Name: ");
+                    name = input.nextLine();
+                    System.out.print("Enter Age: ");
+                    age = input.nextInt();
+                    System.out.print("Enter Roll Number: ");
+                    roll_number = input.nextInt();
+
+                    Student student = new Student(name, age, roll_number);
+
+                    while (flag2) {
+                        System.out.println("1. AttemptQuiz");
+                        System.out.println("2. Show All Students Result");
+                        caseNo = input.nextInt();
+
+                        switch (caseNo) {
+                            case 1 -> {
+                                student.attempt_Q();
+                                break;
+                            }
+                            case 2 -> {
+                                student.showListOfStudents();
+                            }
+                            default -> {
+                                System.out.println("Invalid");
+
+                            }
+                        }
+
+                    }
+
                     break;
                 }
                 default -> {
