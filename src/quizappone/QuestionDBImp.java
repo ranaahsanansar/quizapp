@@ -13,7 +13,7 @@ public class QuestionDBImp  {
 //    Create Table if not available in DataBase ------------
     public void createQuestionsTable(){
         
-        Connection connection ;
+        Connection connection = null;
         Statement statement = null;
         String Querry = "CREATE TABLE `quizapp`.`questions` ( `id` INT(100) NOT NULL ,  `question` TEXT NOT NULL ,  `opt1` TEXT NOT NULL ,  `opt2` TEXT NOT NULL ,  `opt3` TEXT NOT NULL ,  `opt4` TEXT NOT NULL ,  `correct` INT(10) NOT NULL ,    PRIMARY KEY  (`id`))";
         try{
@@ -27,9 +27,9 @@ public class QuestionDBImp  {
         
     }
     
-//    Insert New Question in Database 
+//    Insert New Question in Database ----------------------------------
     
-    public void insertQuestionDB(Mcqs question) throws SQLException{
+    public void insertQuestion(Mcqs question) throws SQLException{
         Connection connection = null;
         PreparedStatement prepareStatement = null;
 //        ------------------------
@@ -47,12 +47,53 @@ public class QuestionDBImp  {
             prepareStatement.setString(6, question.getOpt4());
             prepareStatement.setInt(7, question.getCorrect());
             prepareStatement.executeUpdate();
-                System.out.println("Inserted");
+            System.out.println("Inserted");
             
         }catch (SQLException e){
             e.printStackTrace();
         }
         
     }
+    
+    public void delete(int id){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try{
+        
+            connection = CreatConnection.getConnection();
+            preparedStatement = connection.prepareStatement("​DELETE FROM `questions` WHERE `questions`.`id` = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            System.out.println("Question Deleted!");
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public void update(Mcqs question , int id){
+        Connection connection = null ;
+        PreparedStatement preparedStatement = null;
+        
+        try {
+            connection = CreatConnection.getConnection();
+            preparedStatement = connection.prepareStatement("UPDATE `questions` SET `question` = ? , `opt1` = ?, `opt2` = ?, `opt3` = ?, `opt4` = ?, `correct` = ? WHERE `questions`.`id` = ?");
+            
+            
+            preparedStatement.setString(1, question.getQuestion());
+            preparedStatement.setString(2, question.getOpt1());
+            preparedStatement.setString(3, question.getOpt2());
+            preparedStatement.setString(4, question.getOpt3());
+            preparedStatement.setString(5, question.getOpt4());
+            preparedStatement.setInt(6, question.getCorrect());
+            preparedStatement.setInt(7, id);
+            preparedStatement.executeUpdate();
+            System.out.println("Question Updated SuccesFully");
+            
+        }catch (Exception e) {
+            
+        }
+    }
+    
     
 }

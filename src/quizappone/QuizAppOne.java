@@ -16,7 +16,7 @@ public class QuizAppOne {
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         Teacher T = new Teacher("Captain" , 22);
-        T.insertQuestion();
+        T.insert();
     }
     
 }

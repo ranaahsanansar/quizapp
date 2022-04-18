@@ -9,6 +9,7 @@ package quizappone;
  * @author Rana Ahsan Ansar
  */
 public abstract class Person {
+    static boolean mode = true ;
     String name;
     int age;
     Person(String name, int age){
