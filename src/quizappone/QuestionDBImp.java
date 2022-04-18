@@ -29,7 +29,7 @@ public class QuestionDBImp  {
     
 //    Insert New Question in Database ----------------------------------
     
-    public void insertQuestion(Mcqs question) throws SQLException{
+    public void insertQuestion(Mcqs question){
         Connection connection = null;
         PreparedStatement prepareStatement = null;
 //        ------------------------
