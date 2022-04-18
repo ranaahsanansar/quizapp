@@ -95,5 +95,41 @@ public class QuestionDBImp  {
         }
     }
     
+    public Mcqs selectById(int id) {
+        Mcqs question = new Mcqs();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        
+        try {
+            connection = CreatConnection.getConnection();
+            preparedStatement = connection.prepareStatement("SELECT * FROM `questions` WHERE id = ?");
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                question.setId(resultSet.getInt("id"));
+                question.setQuestion(resultSet.getString("question"));
+                
+                question.setOpt1(resultSet.getString("opt1"));
+                question.setOpt2(resultSet.getString("opt2"));
+                question.setOpt3(resultSet.getString("opt3"));
+                question.setOpt4(resultSet.getString("opt4"));
+                
+                question.setCorrect(resultSet.getInt("correct"));
+                
+            }
+            
+            
+        }catch (Exception e){
+            System.out.println(e);
+            e.printStackTrace();
+        }
+        
+        
+        
+        return question;
+    }
+    
     
 }

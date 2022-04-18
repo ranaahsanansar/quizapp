@@ -13,10 +13,12 @@ public class QuizAppOne {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         // TODO code application logic here
         Teacher T = new Teacher("Captain" , 22);
-        T.insert();
+//        T.insert();
+        T.update(1);
+        System.out.println("Mcq UpdatedMian");
     }
     
 }

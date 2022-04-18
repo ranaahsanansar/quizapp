@@ -15,8 +15,9 @@ public class Teacher extends Person {
 
     public Teacher(String name, int age) {
         super(name, age);
+        mode = true;
     }
-
+    
     public void insert() throws SQLException {
         if (mode == true) {
             System.out.println("Enter Question No: ");
@@ -41,11 +42,19 @@ public class Teacher extends Person {
             }
             
         }
-
     }
 
-    public void update(Mcqs Q, int id) {
-
+    public void update(int id) {
+        if (mode == true){
+            Mcqs question = new Mcqs(id, "What is Your Name", "AhsanCaptain", "Ahmed", "Ali", "Umar", 1);
+            QuestionDBImp database = new QuestionDBImp();
+            
+            database.update(question, id);
+            
+        }
+        else {
+            System.out.println("You are in Student Mode");
+        }
     }
 
 }
