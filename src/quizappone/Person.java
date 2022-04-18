@@ -19,8 +19,18 @@ public abstract class Person {
     int age;
 
     Person(String name, int age) {
-        this.name = name;
-        this.age = age;
+        if (age < 100 && age > 0) {
+            this.age = age;
+        }else {
+            this.age = 0;
+        }
+        
+        if (name.length() > 3){
+            this.name = name;
+        }else {
+            this.name = "Unknown";
+        }
+        
     }
 
     public void showListOfStudents() {

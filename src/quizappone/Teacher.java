@@ -59,6 +59,20 @@ public class Teacher extends Person {
         }
     }
     
+    public void emptyQuiz(){
+        Connection connection = null;
+        Statement statement = null;
+        
+        try{
+            connection = CreatConnection.getConnection();
+            statement = connection.createStatement();
+            statement.execute("​TRUNCATE TABLE `quizapp`.`questions`");
+            System.out.println("Old Quiz Cleared");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     
 
 }
