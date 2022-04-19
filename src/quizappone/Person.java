@@ -32,34 +32,7 @@ public abstract class Person {
         }
         
     }
+    
+   protected abstract void result();
 
-    protected void showListOfStudents() {
-//        List<Student> students = new ArrayList();
-
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-            connection = CreatConnection.getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM `student`");
-            
-            while (resultSet.next()) {
-                System.out.println("Name: " + resultSet.getString("name"));
-                System.out.println("Roll Number: " + resultSet.getInt("roll_number"));
-                System.out.println("Total: " + resultSet.getInt("total"));
-                System.out.println("Obtained Marks: " + resultSet.getInt("obt_marks"));
-                System.out.println("Persentage: " + resultSet.getInt("persentage") + "%");
-                System.out.println("------------------------------------------");
-                System.out.println("------------------------------------------");
-                System.out.println("------------------------------------------");
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 }

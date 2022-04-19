@@ -42,6 +42,7 @@ public class QuizAppOne {
             System.out.println("2. Student");
             System.out.println("3. Show Teacher in Sorted Form");
             System.out.println("4. Show Student in Sorted Form");
+            System.out.println("5. Exit");
             try {
                 caseNo = input.nextInt();
             } catch (Exception e) {
@@ -66,7 +67,7 @@ public class QuizAppOne {
                         System.out.println("\n1. Create Quiz");
                         System.out.println("2. Show List of Students");
                         System.out.println("3. Update Question");
-                        System.out.println("4.Delete Question");
+                        System.out.println("4. Delete Question");
                         System.out.println("5. Show List of Question");
                         System.out.println("6. Exit");
                         caseNo = input.nextInt();
@@ -78,7 +79,7 @@ public class QuizAppOne {
                                 break;
                             }
                             case 2 -> {
-                                teacher.showListOfStudents();
+                                teacher.result();
                                 break;
                             }
                             case 3 -> {
@@ -127,7 +128,8 @@ public class QuizAppOne {
 
                     while (flag2) {
                         System.out.println("1. AttemptQuiz");
-                        System.out.println("2. Show All Students Result");
+                        System.out.println("2. Show Result");
+                        System.out.println("3. Exit");
                         caseNo = input.nextInt();
 
                         switch (caseNo) {
@@ -136,16 +138,25 @@ public class QuizAppOne {
                                 break;
                             }
                             case 2 -> {
-                                student.showListOfStudents();
+                                student.result();
+                            }
+                            case 3 -> {
+                                flag2 = false;
+                                break;
                             }
                             default -> {
                                 System.out.println("Invalid");
-
+                                break;
                             }
                         }
 
                     }
 
+                    break;
+                }
+                
+                case 5 -> {
+                    flag = false;
                     break;
                 }
                 default -> {

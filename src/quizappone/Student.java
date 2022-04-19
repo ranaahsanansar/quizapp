@@ -64,6 +64,39 @@ public class Student extends Person {
         }
 
     }
+    
+    public void result(){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = CreatConnection.getConnection();
+            preparedStatement = connection.prepareStatement("SELECT * FROM `student` WHERE roll_number = ? ");
+            preparedStatement.setInt(1, this.roll_number);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                while (resultSet.next()) {
+                System.out.println("Name: " + resultSet.getString("name"));
+                System.out.println("Roll Number: " + resultSet.getInt("roll_number"));
+                System.out.println("Total: " + resultSet.getInt("total"));
+                System.out.println("Obtained Marks: " + resultSet.getInt("obt_marks"));
+                System.out.println("Persentage: " + resultSet.getInt("persentage") + "%");
+                System.out.println("------------------------------------------");
+                System.out.println("------------------------------------------");
+                System.out.println("------------------------------------------");
+
+            }
+            }else {
+                System.out.println("Not found with your Roll Number");
+            }
+            
+
+        } catch (Exception e) {
+//            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
 
     private void insertStudent() {
 
