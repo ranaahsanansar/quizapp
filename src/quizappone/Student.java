@@ -84,7 +84,8 @@ public class Student extends Person {
             preparedStatement = connection.prepareStatement("SELECT * FROM `student` WHERE roll_number = ? ");
             preparedStatement.setInt(1, this.roll_number);
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()){
+//            System.out.println(resultSet + " and " + preparedStatement);
+            
                 while (resultSet.next()) {
                 System.out.println("Name: " + resultSet.getString("name"));
                 System.out.println("Roll Number: " + resultSet.getInt("roll_number"));
@@ -95,9 +96,6 @@ public class Student extends Person {
                 System.out.println("------------------------------------------");
                 System.out.println("------------------------------------------");
 
-            }
-            }else {
-                System.out.println("Not found with your Roll Number");
             }
             
 
@@ -116,21 +114,20 @@ public class Student extends Person {
 
         try {
             connection = CreatConnection.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO `student` (`id`, `roll_number`, `name`, `total`, `obt_marks`, `persentage`, `age`) VALUES (NULL, ?, ?, ?, ?, ? , ?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO `student` (`id`, `roll_number`, `name`, `total`, `obt_marks`, `persentage`, `age`) VALUES (NULL, ?, ?, ?, ?, ? , ? )");
 
-            preparedStatement.setInt(1, roll_number);
-            preparedStatement.setString(2, name);
-            preparedStatement.setInt(3, total);
-            preparedStatement.setInt(4, score);
-            preparedStatement.setInt(5, percentageInt);
-            preparedStatement.setInt(6, age);
+            preparedStatement.setInt(1, this.roll_number);
+            preparedStatement.setString(2, this.name);
+            preparedStatement.setInt(3, this.total);
+            preparedStatement.setInt(4, this.score);
+            preparedStatement.setInt(5, this.percentageInt);
+            preparedStatement.setInt(6, this.age);
             if (preparedStatement.execute()) {
                 System.out.println("Added Done");
             }
 
         } catch (SQLException e) {
             System.out.println("Error" + e);
-            e.printStackTrace();
         }
     }
 //-----------------------------------------------------------------
