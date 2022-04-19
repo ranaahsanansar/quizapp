@@ -1,4 +1,3 @@
-
 package quizappone;
 
 //import java.sql.*;
@@ -166,25 +165,29 @@ public class QuizAppOne {
                 case 3 -> {
                     Person teacher = new Teacher();
                     array = teacher.getList();
-                    int i = 0 , j = 0;
+                    int i = 0, j = 0;
                     Collections.sort(array, new Comparator<Person>() {
                         @Override
                         public int compare(Person s1, Person s2) {
                             return String.valueOf(s1.name).compareTo(s2.name);
                         }
                     });
-                    
+
                     for (Person a : array) {
-                          a.display();
-                          i++;
+                        a.display();
+                        System.out.println("-------------------------");
+                        System.out.println("-------------------------");
+                        i++;
                     }
                     Integer[] highest_age = new Integer[i];
                     for (Person a : array) {
-                          highest_age[j] = a.age;
+                        highest_age[j] = a.age;
                     }
+                    System.out.println("-------------------------");
+                    System.out.println("-------------------------");
+                    System.out.println("-------------------------");
                     System.out.print("Highest age In teachers: ");
                     maxArray(highest_age);
-                    
 
                     break;
                 }
@@ -192,7 +195,7 @@ public class QuizAppOne {
                 case 4 -> {
                     Student student = new Student();
                     array = student.getList();
-                    int i = 0 , j = 0;
+                    int i = 0, j = 0;
                     Collections.sort(array, new Comparator<Person>() {
                         @Override
                         public int compare(Person s1, Person s2) {
@@ -200,13 +203,18 @@ public class QuizAppOne {
                         }
                     });
                     for (Person a : array) {
-                          a.display();
-                          i++;
+                        a.display();
+                        System.out.println("-------------------------");
+                        System.out.println("-------------------------");
+                        i++;
                     }
                     Integer[] highest_age = new Integer[i];
                     for (Person a : array) {
-                          highest_age[j] = a.age;
+                        highest_age[j] = a.age;
                     }
+                    System.out.println("-------------------------");
+                    System.out.println("-------------------------");
+                    System.out.println("-------------------------");
                     System.out.print("Highest age in Students: ");
                     maxArray(highest_age);
 

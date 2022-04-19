@@ -1,4 +1,3 @@
-
 package quizappone;
 
 import java.sql.*;
@@ -14,11 +13,11 @@ import static quizappone.QuizAppOne.input;
 public class Teacher extends Person {
 
     int teacherId;
-    
-    Teacher(){
-        
+
+    Teacher() {
+
     }
-    
+
     public Teacher(String name, int age, int teacherId) {
         super(name, age);
         mode = true;
@@ -28,9 +27,9 @@ public class Teacher extends Person {
 
     private boolean checkTeacherDB() {
         boolean check = false;
-        Connection connection ;
-        PreparedStatement preparedStatement ;
-        ResultSet resultSet ;
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
 
         try {
             connection = CreatConnection.getConnection();
@@ -49,7 +48,7 @@ public class Teacher extends Person {
     private void insertTecherDB() {
 
         if (!checkTeacherDB()) {
-            Connection connection ;
+            Connection connection;
             PreparedStatement preparedStatement;
 
             try {
@@ -148,9 +147,9 @@ public class Teacher extends Person {
 
     @Override
     public void result() {
-        Connection connection ;
-        Statement statement ;
-        ResultSet resultSet ;
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
 
         try {
             connection = CreatConnection.getConnection();
@@ -185,9 +184,9 @@ public class Teacher extends Person {
         database.showAll();
 
     }
-    
+
     @Override
-    public void display(){
+    public void display() {
         System.out.println("Name: " + name);
         System.out.println("Age: " + age);
     }
@@ -199,9 +198,9 @@ public class Teacher extends Person {
         String name_list;
         int tId_list, age_list;
 
-        Connection connection ;
-        Statement statement ;
-        ResultSet resultSet ;
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
 
         try {
             connection = CreatConnection.getConnection();

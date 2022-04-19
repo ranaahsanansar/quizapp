@@ -1,4 +1,3 @@
-
 package quizappone;
 
 import java.sql.*;
@@ -13,8 +12,8 @@ public class QuestionDBImp implements Questions {
     @Override
     public void createQuestionsTable() {
 
-        Connection connection ;
-        Statement statement ;
+        Connection connection;
+        Statement statement;
         String Querry = "CREATE TABLE `quizapp`.`questions` ( `id` INT(100) NOT NULL ,  `question` TEXT NOT NULL ,  `opt1` TEXT NOT NULL ,  `opt2` TEXT NOT NULL ,  `opt3` TEXT NOT NULL ,  `opt4` TEXT NOT NULL ,  `correct` INT(10) NOT NULL ,    PRIMARY KEY  (`id`))";
         try {
             connection = CreatConnection.getConnection();
@@ -30,8 +29,8 @@ public class QuestionDBImp implements Questions {
 //    Insert New Question in Database ----------------------------------
     @Override
     public void insertQuestion(Mcqs question) {
-        Connection connection ;
-        PreparedStatement prepareStatement ;
+        Connection connection;
+        PreparedStatement prepareStatement;
 //        ------------------------
 //        INSERT INTO `questions` (`id`, `question`, `opt1`, `opt2`, `opt3`, `opt4`, `correct`) VALUES ('question.getId()', 'question.getQuestion()', 'question.getOpt1()', 'question.getOpt2()', 'question.getOpt3()', 'question.getOpt4()', 'question.getCorrect()');
 
@@ -57,8 +56,8 @@ public class QuestionDBImp implements Questions {
 
     @Override
     public void delete(int id) {
-        Connection connection ;
-        PreparedStatement preparedStatement ;
+        Connection connection;
+        PreparedStatement preparedStatement;
 
         try {
 
@@ -74,8 +73,8 @@ public class QuestionDBImp implements Questions {
 
     @Override
     public void update(Mcqs question, int id) {
-        Connection connection ;
-        PreparedStatement preparedStatement ;
+        Connection connection;
+        PreparedStatement preparedStatement;
 
         try {
             connection = CreatConnection.getConnection();
@@ -99,9 +98,9 @@ public class QuestionDBImp implements Questions {
     @Override
     public Mcqs selectById(int id) {
         Mcqs question = new Mcqs();
-        Connection connection ;
-        PreparedStatement preparedStatement ;
-        ResultSet resultSet ;
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
 
         try {
             connection = CreatConnection.getConnection();
@@ -132,7 +131,7 @@ public class QuestionDBImp implements Questions {
 
     protected void deleteAll() {
         Connection connection;
-        Statement statement ;
+        Statement statement;
 
         try {
             connection = CreatConnection.getConnection();
