@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package quizappone;
 
 //import java.sql.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -70,7 +65,7 @@ public class QuizAppOne {
             try {
                 caseNo = input.nextInt();
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e);
                 System.out.println("Invalid Key");
                 exit();
             }
@@ -199,7 +194,7 @@ public class QuizAppOne {
                     Student student = new Student();
                     array = student.getList();
 
-                    Collections.sort(array_stu, new Comparator<Person>() {
+                    Collections.sort(array, new Comparator<Person>() {
                         @Override
                         public int compare(Person s1, Person s2) {
                             return String.valueOf(s1.name).compareTo(s2.name);

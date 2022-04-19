@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package quizappone;
 
 import java.sql.*;
@@ -13,10 +10,11 @@ import java.sql.*;
 public class QuestionDBImp implements Questions {
 //    Create Table if not available in DataBase ------------
 
+    @Override
     public void createQuestionsTable() {
 
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection ;
+        Statement statement ;
         String Querry = "CREATE TABLE `quizapp`.`questions` ( `id` INT(100) NOT NULL ,  `question` TEXT NOT NULL ,  `opt1` TEXT NOT NULL ,  `opt2` TEXT NOT NULL ,  `opt3` TEXT NOT NULL ,  `opt4` TEXT NOT NULL ,  `correct` INT(10) NOT NULL ,    PRIMARY KEY  (`id`))";
         try {
             connection = CreatConnection.getConnection();
@@ -30,9 +28,10 @@ public class QuestionDBImp implements Questions {
     }
 
 //    Insert New Question in Database ----------------------------------
+    @Override
     public void insertQuestion(Mcqs question) {
-        Connection connection = null;
-        PreparedStatement prepareStatement = null;
+        Connection connection ;
+        PreparedStatement prepareStatement ;
 //        ------------------------
 //        INSERT INTO `questions` (`id`, `question`, `opt1`, `opt2`, `opt3`, `opt4`, `correct`) VALUES ('question.getId()', 'question.getQuestion()', 'question.getOpt1()', 'question.getOpt2()', 'question.getOpt3()', 'question.getOpt4()', 'question.getCorrect()');
 
@@ -51,14 +50,15 @@ public class QuestionDBImp implements Questions {
             System.out.println("Inserted");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
     }
 
+    @Override
     public void delete(int id) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection ;
+        PreparedStatement preparedStatement ;
 
         try {
 
@@ -67,14 +67,15 @@ public class QuestionDBImp implements Questions {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             System.out.println("Question Deleted!");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
 
+    @Override
     public void update(Mcqs question, int id) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection ;
+        PreparedStatement preparedStatement ;
 
         try {
             connection = CreatConnection.getConnection();
@@ -90,16 +91,17 @@ public class QuestionDBImp implements Questions {
             preparedStatement.executeUpdate();
             System.out.println("Question Updated SuccesFully");
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 
+    @Override
     public Mcqs selectById(int id) {
         Mcqs question = new Mcqs();
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+        Connection connection ;
+        PreparedStatement preparedStatement ;
+        ResultSet resultSet ;
 
         try {
             connection = CreatConnection.getConnection();
@@ -120,32 +122,32 @@ public class QuestionDBImp implements Questions {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         return question;
     }
 
     protected void deleteAll() {
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection;
+        Statement statement ;
 
         try {
             connection = CreatConnection.getConnection();
             statement = connection.createStatement();
             statement.execute("DELETE FROM questions");
             System.out.println("Old Quiz Cleared");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 
     protected void showAll() {
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
 
         try {
             connection = CreatConnection.getConnection();
@@ -160,8 +162,8 @@ public class QuestionDBImp implements Questions {
                 System.out.println("------------------------------------------");
 
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 

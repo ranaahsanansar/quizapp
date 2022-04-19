@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package quizappone;
 
 import java.sql.*;
@@ -31,9 +28,9 @@ public class Teacher extends Person {
 
     private boolean checkTeacherDB() {
         boolean check = false;
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+        Connection connection ;
+        PreparedStatement preparedStatement ;
+        ResultSet resultSet ;
 
         try {
             connection = CreatConnection.getConnection();
@@ -41,7 +38,7 @@ public class Teacher extends Person {
             preparedStatement.setInt(1, this.teacherId);
             resultSet = preparedStatement.executeQuery();
             check = resultSet.next();
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            e.printStackTrace();
             System.out.println(e);
         }
@@ -52,8 +49,8 @@ public class Teacher extends Person {
     private void insertTecherDB() {
 
         if (!checkTeacherDB()) {
-            Connection connection = null;
-            PreparedStatement preparedStatement = null;
+            Connection connection ;
+            PreparedStatement preparedStatement;
 
             try {
                 connection = CreatConnection.getConnection();
@@ -66,7 +63,7 @@ public class Teacher extends Person {
                     System.out.println("Teacher Details Added Into DataBase");
                 }
 
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 System.out.println("Error" + e);
             }
         }
@@ -149,10 +146,11 @@ public class Teacher extends Person {
         }
     }
 
+    @Override
     public void result() {
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connection ;
+        Statement statement ;
+        ResultSet resultSet ;
 
         try {
             connection = CreatConnection.getConnection();
@@ -171,7 +169,7 @@ public class Teacher extends Person {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            e.printStackTrace();
             System.out.println(e);
         }
@@ -188,20 +186,22 @@ public class Teacher extends Person {
 
     }
     
+    @Override
     public void display(){
         System.out.println("Name: " + name);
         System.out.println("Age: " + age);
     }
 
+    @Override
     public List<Person> getList() {
         List<Person> teachers = new ArrayList<>();
 
         String name_list;
         int tId_list, age_list;
 
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connection ;
+        Statement statement ;
+        ResultSet resultSet ;
 
         try {
             connection = CreatConnection.getConnection();
@@ -219,7 +219,7 @@ public class Teacher extends Person {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            e.printStackTrace();
             System.out.println(e);
         }

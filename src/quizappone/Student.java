@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package quizappone;
 
 import java.sql.*;
@@ -41,9 +38,9 @@ public class Student extends Person {
     private void getMcqs(){
         
 //        getting Array of Mcqs from DataBase 
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connection ;
+        Statement statement ;
+        ResultSet resultSet ;
 
         try {
             connection = CreatConnection.getConnection();
@@ -65,19 +62,20 @@ public class Student extends Person {
                 mcqArray.add(data);
 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
-
-            e.printStackTrace();
+            System.out.println(e);
+//            e.printStackTrace();
         }
     }
     
 //    --------------------------------------------------------------
     
+    @Override
     public void result(){
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+        Connection connection ;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet ;
 
         try {
             connection = CreatConnection.getConnection();
@@ -101,7 +99,7 @@ public class Student extends Person {
             }
             
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            e.printStackTrace();
             System.out.println(e);
         }
@@ -111,8 +109,8 @@ public class Student extends Person {
 
     private void insertStudent() {
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection;
+        PreparedStatement preparedStatement;
 
         try {
             connection = CreatConnection.getConnection();
@@ -127,7 +125,7 @@ public class Student extends Person {
                 System.out.println("Added Done");
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error" + e);
         }
     }
@@ -138,11 +136,11 @@ public class Student extends Person {
         
 //        Put Clear Screen Syntax Here Later
         if (mode == false) {
-            int answer = 0;
+            int answer;
 
             System.out.println("Quiz Starts Now");
             System.out.println("Enter 0 to Next\n\n");
-            if (mcqArray.size() > 0) {
+            if (!mcqArray.isEmpty()) {
                 for (Mcqs Q : mcqArray) {
                 total++;
                 System.out.println("Question No." + Q.getId() + ". " + Q.getQuestion() + "\n");
@@ -185,23 +183,25 @@ public class Student extends Person {
     }
 //    ---------------------------------------------------------------------------------
 
+    @Override
     public void display(){
         System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
+        System.out.println("Roll Number: " + roll_number);
         System.out.println("Persentage: " + percentageInt);
     }
     
 //    ---------------------------------------------------------------------------------
     
+    @Override
     public List<Person> getList(){
         List<Person> students = new ArrayList<>();
         String name_list;
         int roll_number_list, age_list , persentage_list ;
         age_list = 1;
         
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connection;
+        Statement statement ;
+        ResultSet resultSet ;
 
         try {
             connection = CreatConnection.getConnection();
@@ -218,7 +218,7 @@ public class Student extends Person {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            e.printStackTrace();
             System.out.println(e);
         }
