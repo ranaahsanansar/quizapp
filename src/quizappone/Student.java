@@ -24,14 +24,14 @@ public class Student extends Person {
         
     }
 
-    Student(String name, int age, int roll_number) {
+    Student(String name, int age, int roll_num) {
         super(name, age);
         score = 0;
         total = 0;
         percentage = 0;
         percentageInt = 0;
         mode = false;
-        this.roll_number = roll_number;
+        this.roll_number = roll_num;
 
     }
 //    -----------------------------------------------------------------------
@@ -70,6 +70,8 @@ public class Student extends Person {
     }
     
 //    --------------------------------------------------------------
+    
+   
     
     @Override
     public void result(){
@@ -114,19 +116,21 @@ public class Student extends Person {
 
         try {
             connection = CreatConnection.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO `student` (`id`, `roll_number`, `name`, `total`, `obt_marks`, `persentage`) VALUES (NULL, ?, ?, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO `student` (`id`, `roll_number`, `name`, `total`, `obt_marks`, `persentage`, `age`) VALUES (NULL, ?, ?, ?, ?, ? , ?)");
 
             preparedStatement.setInt(1, roll_number);
             preparedStatement.setString(2, name);
             preparedStatement.setInt(3, total);
             preparedStatement.setInt(4, score);
             preparedStatement.setInt(5, percentageInt);
+            preparedStatement.setInt(6, age);
             if (preparedStatement.execute()) {
                 System.out.println("Added Done");
             }
 
         } catch (SQLException e) {
             System.out.println("Error" + e);
+            e.printStackTrace();
         }
     }
 //-----------------------------------------------------------------
@@ -197,7 +201,6 @@ public class Student extends Person {
         List<Person> students = new ArrayList<>();
         String name_list;
         int roll_number_list, age_list , persentage_list ;
-        age_list = 1;
         
         Connection connection;
         Statement statement ;
@@ -212,6 +215,7 @@ public class Student extends Person {
                 name_list = resultSet.getString("name");
                 roll_number_list = resultSet.getInt("roll_number");
                 persentage_list = resultSet.getInt("persentage");
+                age_list = resultSet.getInt("age");
                 Student getStudent = new Student(name_list, age_list,  roll_number_list);
                 getStudent.percentageInt = persentage_list;
                 students.add(getStudent);

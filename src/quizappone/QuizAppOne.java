@@ -19,17 +19,6 @@ public class QuizAppOne {
 
     static <T extends Comparable<T>> void maxArray(T[] arr) {
 
-        int check;
-        for (T arr1 : arr) {
-            check = arr1.compareTo(arr[0]);
-            //            System.out.println(check);
-            System.out.println("Check: " + check);
-            if (check > 0) {
-                arr[0] = arr1;
-//                System.out.println("Store " + arr[0] + "with " + arr[i]);
-            }
-        }
-
         System.out.println(arr[0]);
 
     }
@@ -177,23 +166,33 @@ public class QuizAppOne {
                 case 3 -> {
                     Person teacher = new Teacher();
                     array = teacher.getList();
-
+                    int i = 0 , j = 0;
                     Collections.sort(array, new Comparator<Person>() {
                         @Override
                         public int compare(Person s1, Person s2) {
                             return String.valueOf(s1.name).compareTo(s2.name);
                         }
                     });
+                    
                     for (Person a : array) {
                           a.display();
+                          i++;
                     }
+                    Integer[] highest_age = new Integer[i];
+                    for (Person a : array) {
+                          highest_age[j] = a.age;
+                    }
+                    System.out.print("Highest age In teachers: ");
+                    maxArray(highest_age);
+                    
 
                     break;
                 }
+
                 case 4 -> {
                     Student student = new Student();
                     array = student.getList();
-
+                    int i = 0 , j = 0;
                     Collections.sort(array, new Comparator<Person>() {
                         @Override
                         public int compare(Person s1, Person s2) {
@@ -202,7 +201,14 @@ public class QuizAppOne {
                     });
                     for (Person a : array) {
                           a.display();
+                          i++;
                     }
+                    Integer[] highest_age = new Integer[i];
+                    for (Person a : array) {
+                          highest_age[j] = a.age;
+                    }
+                    System.out.print("Highest age in Students: ");
+                    maxArray(highest_age);
 
                     break;
                 }
