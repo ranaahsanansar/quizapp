@@ -134,6 +134,8 @@ public class Student extends Person {
 //        Put Clear Screen Syntax Here Later
         if (mode == false) {
             int answer;
+            score = 0;
+            total = 0;
 
             System.out.println("Quiz Starts Now");
             System.out.println("Enter 0 to Next\n\n");
@@ -167,9 +169,10 @@ public class Student extends Person {
 
                 System.out.println("Total " + total);
                 System.out.println("Your current Score: " + score);
-                percentage = (score / total) * 100;
+                percentage = 100 * (score / total);
                 percentageInt = (int) percentage;
                 insertStudent();
+                mcqArray.removeAll(mcqArray) ;
             } else {
                 System.out.println("There is No Question in Quiz");
             }
