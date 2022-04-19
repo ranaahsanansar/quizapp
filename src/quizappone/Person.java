@@ -17,6 +17,11 @@ public abstract class Person {
     static boolean mode = true;
     String name;
     int age;
+    
+    Person(){
+        name = "Null";
+        age = 1;
+    }
 
     Person(String name, int age) {
         if (age < 100 && age > 0) {

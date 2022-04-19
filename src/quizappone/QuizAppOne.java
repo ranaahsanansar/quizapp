@@ -6,6 +6,12 @@ package quizappone;
 
 //import java.sql.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,17 +20,35 @@ import java.util.Scanner;
  */
 public class QuizAppOne {
 
-    /**
-     * @param args the command line arguments
-     */
     static Scanner input = new Scanner(System.in).useDelimiter("\n");
 
+    static <T extends Comparable<T>> void sortArray(T[] arr) {
+
+        int check;
+        for (T arr1 : arr) {
+            check = arr1.compareTo(arr[0]);
+            //            System.out.println(check);
+            System.out.println("Check: " + check);
+            if (check > 0) {
+                arr[0] = arr1;
+//                System.out.println("Store " + arr[0] + "with " + arr[i]);
+            }
+        }
+
+        System.out.println(arr[0]);
+
+    }
+
+//    Main Function ---------------------
+//    --------------------------------
+//    --------------------------------
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         int caseNo = 0;
         boolean flag = true;
         String name;
         int age;
+        List<Person> array = new ArrayList();
 
         System.out.println("Welcome To Quiz Application");
         System.out.println("Rana Ahsan Ansar 70077960");
@@ -61,7 +85,7 @@ public class QuizAppOne {
                     age = input.nextInt();
                     System.out.print("Enter Teacher ID: ");
                     teacherId = input.nextInt();
-                    Teacher teacher = new Teacher(name, age , teacherId);
+                    Teacher teacher = new Teacher(name, age, teacherId);
 
                     while (flag2) {
                         System.out.println("\n1. Create Quiz");
@@ -154,7 +178,39 @@ public class QuizAppOne {
 
                     break;
                 }
-                
+
+                case 3 -> {
+                    Person teacher = new Teacher();
+                    array = teacher.getList();
+
+                    Collections.sort(array, new Comparator<Person>() {
+                        @Override
+                        public int compare(Person s1, Person s2) {
+                            return String.valueOf(s1.name).compareTo(s2.name);
+                        }
+                    });
+                    for (Person a : array) {
+                          System.out.println("Name: " + a.name + " | Age: " + a.age);
+                    }
+
+                    break;
+                }
+                case 4 -> {
+                    Student student = new Student();
+                    array = student.getList();
+
+                    Collections.sort(array, new Comparator<Person>() {
+                        @Override
+                        public int compare(Person s1, Person s2) {
+                            return String.valueOf(s1.name).compareTo(s2.name);
+                        }
+                    });
+                    for (Person a : array) {
+                          System.out.println("Name: " + a.name + " | Age: " + a.age);
+                    }
+
+                    break;
+                }
                 case 5 -> {
                     flag = false;
                     break;

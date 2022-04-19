@@ -22,6 +22,10 @@ public class Student extends Person {
     int percentageInt;
     List<Mcqs> mcqArray = new ArrayList<>();
     private int score;
+    
+    Student(){
+        
+    }
 
     Student(String name, int age, int roll_number) {
         super(name, age);

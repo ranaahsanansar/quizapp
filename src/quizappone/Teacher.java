@@ -17,15 +17,19 @@ import static quizappone.QuizAppOne.input;
 public class Teacher extends Person {
 
     int teacherId;
-
+    
+    Teacher(){
+        
+    }
+    
     public Teacher(String name, int age, int teacherId) {
         super(name, age);
         mode = true;
         this.teacherId = teacherId;
 
     }
-    
-    private boolean checkTeacherDB(){
+
+    private boolean checkTeacherDB() {
         boolean check = false;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -41,32 +45,32 @@ public class Teacher extends Person {
 //            e.printStackTrace();
             System.out.println(e);
         }
-        
+
         return check;
     }
-    
-    private void insertTecherDB(){
-        
-        if(!checkTeacherDB()){
+
+    private void insertTecherDB() {
+
+        if (!checkTeacherDB()) {
             Connection connection = null;
-        PreparedStatement preparedStatement = null;
+            PreparedStatement preparedStatement = null;
 
-        try {
-            connection = CreatConnection.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO `teachers` (`id`, `name`, `age`, `teacher_id`) VALUES (NULL, ?, ?, ? )");
+            try {
+                connection = CreatConnection.getConnection();
+                preparedStatement = connection.prepareStatement("INSERT INTO `teachers` (`id`, `name`, `age`, `teacher_id`) VALUES (NULL, ?, ?, ? )");
 
-            preparedStatement.setString(1, this.name);
-            preparedStatement.setInt(2, this.age);
-            preparedStatement.setInt(3, this.teacherId);
-            if (preparedStatement.execute()) {
-                System.out.println("Teacher Details Added Into DataBase");
+                preparedStatement.setString(1, this.name);
+                preparedStatement.setInt(2, this.age);
+                preparedStatement.setInt(3, this.teacherId);
+                if (preparedStatement.execute()) {
+                    System.out.println("Teacher Details Added Into DataBase");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error" + e);
             }
+        }
 
-        } catch (Exception e) {
-            System.out.println("Error" + e);
-        }
-        }
-        
     }
 
     public void insert() throws SQLException {
@@ -144,8 +148,8 @@ public class Teacher extends Person {
             System.out.println("You are in Student Mode");
         }
     }
-    
-    public void result(){
+
+    public void result() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -154,7 +158,7 @@ public class Teacher extends Person {
             connection = CreatConnection.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM `student`");
-            
+
             while (resultSet.next()) {
                 System.out.println("Name: " + resultSet.getString("name"));
                 System.out.println("Roll Number: " + resultSet.getInt("roll_number"));
@@ -177,18 +181,44 @@ public class Teacher extends Person {
         QuestionDBImp database = new QuestionDBImp();
         database.deleteAll();
     }
-    
+
     public void showAllQuestion() {
         QuestionDBImp database = new QuestionDBImp();
         database.showAll();
 
     }
-    
-    public List<Person> getList(){
+
+    public List<Person> getList() {
         List<Person> teachers = new ArrayList<>();
-        
-        
-        
+
+        String name_list;
+        int tId_list, age_list;
+
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = CreatConnection.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM `teachers`");
+
+            while (resultSet.next()) {
+                name_list = resultSet.getString("name");
+                tId_list = resultSet.getInt("teacher_id");
+                age_list = resultSet.getInt("age");
+
+                Teacher getTeacher = new Teacher(name_list, age_list, tId_list);
+
+                teachers.add(getTeacher);
+
+            }
+
+        } catch (Exception e) {
+//            e.printStackTrace();
+            System.out.println(e);
+        }
+
         return teachers;
     }
 
