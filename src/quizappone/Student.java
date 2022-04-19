@@ -183,14 +183,21 @@ public class Student extends Person {
         }
         
     }
+//    ---------------------------------------------------------------------------------
+
+    public void display(){
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Persentage: " + percentageInt);
+    }
     
 //    ---------------------------------------------------------------------------------
     
     public List<Person> getList(){
         List<Person> students = new ArrayList<>();
         String name_list;
-        int roll_number_list, age_list ;
-        
+        int roll_number_list, age_list , persentage_list ;
+        age_list = 1;
         
         Connection connection = null;
         Statement statement = null;
@@ -204,10 +211,9 @@ public class Student extends Person {
             while (resultSet.next()) {
                 name_list = resultSet.getString("name");
                 roll_number_list = resultSet.getInt("roll_number");
-                age_list =  resultSet.getInt("age");
-                
+                persentage_list = resultSet.getInt("persentage");
                 Student getStudent = new Student(name_list, age_list,  roll_number_list);
-                
+                getStudent.percentageInt = persentage_list;
                 students.add(getStudent);
 
             }

@@ -24,7 +24,7 @@ public abstract class Person {
     }
 
     Person(String name, int age) {
-        if (age < 100 && age > 0) {
+        if (age < 100 && age > 10) {
             this.age = age;
         }else {
             this.age = 0;
@@ -40,5 +40,6 @@ public abstract class Person {
     
    protected abstract void result();
    protected abstract List<Person> getList();
+   protected abstract void display();
    
 }

@@ -187,6 +187,11 @@ public class Teacher extends Person {
         database.showAll();
 
     }
+    
+    public void display(){
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
 
     public List<Person> getList() {
         List<Person> teachers = new ArrayList<>();

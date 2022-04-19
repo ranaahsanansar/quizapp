@@ -22,7 +22,7 @@ public class QuizAppOne {
 
     static Scanner input = new Scanner(System.in).useDelimiter("\n");
 
-    static <T extends Comparable<T>> void sortArray(T[] arr) {
+    static <T extends Comparable<T>> void maxArray(T[] arr) {
 
         int check;
         for (T arr1 : arr) {
@@ -190,7 +190,7 @@ public class QuizAppOne {
                         }
                     });
                     for (Person a : array) {
-                          System.out.println("Name: " + a.name + " | Age: " + a.age);
+                          a.display();
                     }
 
                     break;
@@ -199,14 +199,14 @@ public class QuizAppOne {
                     Student student = new Student();
                     array = student.getList();
 
-                    Collections.sort(array, new Comparator<Person>() {
+                    Collections.sort(array_stu, new Comparator<Person>() {
                         @Override
                         public int compare(Person s1, Person s2) {
                             return String.valueOf(s1.name).compareTo(s2.name);
                         }
                     });
                     for (Person a : array) {
-                          System.out.println("Name: " + a.name + " | Age: " + a.age);
+                          a.display();
                     }
 
                     break;
