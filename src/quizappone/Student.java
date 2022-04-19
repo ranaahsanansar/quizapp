@@ -32,6 +32,10 @@ public class Student extends Person {
         mode = false;
         this.roll_number = roll_number;
 
+    }
+//    -----------------------------------------------------------------------
+    private void getMcqs(){
+        
 //        getting Array of Mcqs from DataBase 
         Connection connection = null;
         Statement statement = null;
@@ -62,8 +66,9 @@ public class Student extends Person {
 
             e.printStackTrace();
         }
-
     }
+    
+//    --------------------------------------------------------------
     
     public void result(){
         Connection connection = null;
@@ -97,6 +102,8 @@ public class Student extends Person {
             System.out.println(e);
         }
     }
+    
+//    ------------------------------------------------
 
     private void insertStudent() {
 
@@ -120,8 +127,11 @@ public class Student extends Person {
             System.out.println("Error" + e);
         }
     }
-
+//-----------------------------------------------------------------
     public void attempt_Q() {
+        
+        getMcqs();
+        
 //        Put Clear Screen Syntax Here Later
         if (mode == false) {
             int answer = 0;
@@ -168,6 +178,43 @@ public class Student extends Person {
 
         }
         
+    }
+    
+//    ---------------------------------------------------------------------------------
+    
+    public List<Person> getList(){
+        List<Person> students = new ArrayList<>();
+        String name_list;
+        int roll_number_list, age_list ;
+        
+        
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = CreatConnection.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM `student`");
+            
+            while (resultSet.next()) {
+                name_list = resultSet.getString("name");
+                roll_number_list = resultSet.getInt("roll_number");
+                age_list =  resultSet.getInt("age");
+                
+                Student getStudent = new Student(name_list, age_list,  roll_number_list);
+                
+                students.add(getStudent);
+
+            }
+
+        } catch (Exception e) {
+//            e.printStackTrace();
+            System.out.println(e);
+        }
+        
+        
+        return students;
     }
     
 

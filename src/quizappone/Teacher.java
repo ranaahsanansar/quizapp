@@ -24,8 +24,53 @@ public class Teacher extends Person {
         this.teacherId = teacherId;
 
     }
+    
+    private boolean checkTeacherDB(){
+        boolean check = false;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = CreatConnection.getConnection();
+            preparedStatement = connection.prepareStatement("SELECT * FROM `teachers` WHERE teacher_id = ? ");
+            preparedStatement.setInt(1, this.teacherId);
+            resultSet = preparedStatement.executeQuery();
+            check = resultSet.next();
+        } catch (Exception e) {
+//            e.printStackTrace();
+            System.out.println(e);
+        }
+        
+        return check;
+    }
+    
+    private void insertTecherDB(){
+        
+        if(!checkTeacherDB()){
+            Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = CreatConnection.getConnection();
+            preparedStatement = connection.prepareStatement("INSERT INTO `teachers` (`id`, `name`, `age`, `teacher_id`) VALUES (NULL, ?, ?, ? )");
+
+            preparedStatement.setString(1, this.name);
+            preparedStatement.setInt(2, this.age);
+            preparedStatement.setInt(3, this.teacherId);
+            if (preparedStatement.execute()) {
+                System.out.println("Teacher Details Added Into DataBase");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error" + e);
+        }
+        }
+        
+    }
 
     public void insert() throws SQLException {
+        insertTecherDB();
         QuestionDBImp database = new QuestionDBImp();
         if (mode == true) {
 //          Crate Variables 
@@ -50,7 +95,8 @@ public class Teacher extends Person {
                     database.insertQuestion(question);
                 } catch (Exception e) {
                     System.out.println(e);
-                    e.printStackTrace();
+//                    e.printStackTrace();
+                    System.out.println(e);
                 }
 
             }
@@ -136,6 +182,14 @@ public class Teacher extends Person {
         QuestionDBImp database = new QuestionDBImp();
         database.showAll();
 
+    }
+    
+    public List<Person> getList(){
+        List<Person> teachers = new ArrayList<>();
+        
+        
+        
+        return teachers;
     }
 
 }

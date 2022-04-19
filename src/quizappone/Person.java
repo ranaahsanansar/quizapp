@@ -34,5 +34,6 @@ public abstract class Person {
     }
     
    protected abstract void result();
-
+   protected abstract List<Person> getList();
+   
 }
